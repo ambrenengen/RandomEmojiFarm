@@ -1,3 +1,5 @@
+#<--- Press play and scroll down to see your farm!
+
 import random as r
 
 #Lists of emojis
@@ -15,67 +17,74 @@ moon = "\U0001f31A"
 space = "  "
 gate = "=I="
 
-#Generate number of columns 
-col=r.randint(2,9)
+def main():
+  printFarm()
 
-#Generate number of rows
-row=r.randint(4,8)
 
-#Crop
-crop_num = plants[r.randint(0,len(plants))]
+def printFarm():
+  #Generate number of columns 
+  col=r.randint(2,9)
 
-#day or night
-if r.randint(1, 2) == 1:
-    day = True
-else:
-    day = False
+  #Generate number of rows
+  row=r.randint(4,8)
 
-#tractor position
-tractor_pos = r.randint(0, col-1)
-tractor_y_n = True
+  #Crop
+  crop_num = plants[r.randint(0,len(plants)-1)]
 
-#sun/moon position
-sun_moon_pos = r.randint(0, col-1)
-sun_y_n = True
+  #day or night
+  if r.randint(1, 2) == 1:
+      day = True
+  else:
+      day = False
 
-#generate Sky
-for i2 in range(0,2):
-    for x2 in range(0,col):
-        if x2 == sun_moon_pos and sun_y_n:
-            if day:
-                print(sun, end="")
-                sun_y_n=False
-            else:
-                print(moon, end="")
-                sun_y_n=False
-        else:
-            if day:
-                if r.randint(1, len(sky_things_d)) == 1:
-                    print(sky_things_d[r.randint(0, len(sky_things_d)-1)],end="") 
-                else:
-                    print(space,end="")
-            else:
-                if r.randint(1, len(sky_things_n)) == 1:
-                    print(sky_things_n[r.randint(0, len(sky_things_n)-1)],end="") 
-                else:
-                    print(space,end="")
-    print("\n",end="")
+  #tractor position
+  tractor_pos = r.randint(0, col-1)
+  tractor_y_n = True
 
-#Generate tractor
-for i1 in range(2,3):
-    for x1 in range(0,col):
-        if x1 == tractor_pos and tractor_y_n == True:
-            print(tractor, end="")
-            tractor_y_n=False
-        else:
-            print(gate,end="")
-    print("\n",end="")
+  #sun/moon position
+  sun_moon_pos = r.randint(0, col-1)
+  sun_y_n = True
 
-#generate crops
-for i in range(3,row):
-    for x in range(0,col):
-        if x % 2 == False:
-            print(crop_num,end="")
-        else:
-            print(space, end="") 
-    print("\n",end="")
+  #generate Sky
+  for i2 in range(0,2):
+      for x2 in range(0,col):
+          if x2 == sun_moon_pos and sun_y_n:
+              if day:
+                  print(sun, end="")
+                  sun_y_n=False
+              else:
+                  print(moon, end="")
+                  sun_y_n=False
+          else:
+              if day:
+                  if r.randint(1, len(sky_things_d)) == 1:
+                      print(sky_things_d[r.randint(0, len(sky_things_d)-1)],end="") 
+                  else:
+                      print(space,end="")
+              else:
+                  if r.randint(1, len(sky_things_n)) == 1:
+                      print(sky_things_n[r.randint(0, len(sky_things_n)-1)],end="") 
+                  else:
+                      print(space,end="")
+      print("\n",end="")
+
+  #Generate tractor
+  for i1 in range(2,3):
+      for x1 in range(0,col):
+          if x1 == tractor_pos and tractor_y_n == True:
+              print(tractor, end="")
+              tractor_y_n=False
+          else:
+              print(gate,end="")
+      print("\n",end="")
+
+  #generate crops
+  for i in range(3,row):
+      for x in range(0,col):
+          if x % 2 == False:
+              print(crop_num,end="")
+          else:
+              print(space, end="") 
+      print("\n",end="")
+
+main()
